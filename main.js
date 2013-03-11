@@ -95,22 +95,22 @@ define(function (require, exports, module) {
     function wrapTags(editor) {
         editor = editor || EditorManager.getFocusedEditor();
         console.log(editor.getModeForDocument());
-        if (editor.getModeForDocument() === "htmlmixed") { // "text/x-brackets-html"
-            var dialog = new WrapTagsDialog();
-            var selectedText = editor.getSelectedText();
-            currentQuery = "";
+//        if (editor.getModeForDocument() === "htmlmixed") { // "text/x-brackets-html"
+        var dialog = new WrapTagsDialog();
+        var selectedText = editor.getSelectedText();
+        currentQuery = "";
             
-            dialog.showDialog()
-                .done(function (query) {
-                    if (query) {
-                        currentQuery = query;
-                        var regex = /<(\w+)(>|\s+[^>]*>)/;
-                        var arrMatches = regex.exec(currentQuery);
-                        console.log(arrMatches);
-                        editor._codeMirror.replaceSelection(currentQuery + selectedText + "</" + arrMatches[1] + ">");
-                    }
-                });
-        }
+        dialog.showDialog()
+            .done(function (query) {
+                if (query) {
+                    currentQuery = query;
+                    var regex = /<(\w+)(>|\s+[^>]*>)/;
+                    var arrMatches = regex.exec(currentQuery);
+                    console.log(arrMatches);
+                    editor._codeMirror.replaceSelection(currentQuery + selectedText + "</" + arrMatches[1] + ">");
+                }
+            });
+//        }
         return;
     }
        
